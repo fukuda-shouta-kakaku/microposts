@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :authenticate_user, only: [:show, :edit, :update]
 
   def show
   end
@@ -40,5 +41,12 @@ class UsersController < ApplicationController
                                  :nickname, :place, :description,
                                  :password_confirmation)
   end
+
+  def authenticate_user
+    unless session[:user_id] == params[:id].to_i
+      flash[:danger] = "Invalid user."
+      redirect_to root_path
+    end
+
   end
 end

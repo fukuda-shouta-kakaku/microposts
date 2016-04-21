@@ -2,3 +2,8 @@
   <%= gravatar_for @user %>
   <%= @user.name %>
 </h1>
+<ul>
+  <% if @user.nickname %><li> nickname: <%= @user.nickname %> </li><% end %>
+  <% if @user.place %><li> place: <%= @user.place %> </li><% end %>
+  <% if @user.description %><li> description: <%= @user.description %> </li><% end %>
+</ul>

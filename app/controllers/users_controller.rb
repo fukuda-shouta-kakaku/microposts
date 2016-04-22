@@ -30,6 +30,7 @@ class UsersController < ApplicationController
       flash[:success] = "プロフィールを更新しました。"
       redirect_to @user
     else
+      flash[:danger] = "プロフィールの更新に失敗しました。"
       render 'edit'
     end
   end

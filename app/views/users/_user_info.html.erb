@@ -8,4 +8,8 @@
   <% if user.place %><li> place: <%= user.place %> </li><% end %>
   <% if user.description %><li> description: <%= user.description %> </li><% end %>
   </ul>
+  <div>
+    <%= link_to "Followings", followings_user_path(user), class: "btn btn-success" %>
+    <%= link_to "Followers", followers_user_path(user), class: "btn btn-info" %>
+  </div>
 </section>

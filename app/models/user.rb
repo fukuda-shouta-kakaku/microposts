@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  validates :nickname   , length: { maximum: 20 }
+  validates :place      , length: { maximum: 20 }
+  validates :description, length: { maximum: 100 }
   has_secure_password
   has_many :microposts
 

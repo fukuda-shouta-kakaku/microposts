@@ -111,6 +111,9 @@ input {
 aside {
   section.user_info {
     margin-top: 20px;
+      ul {
+        list-style-type: none
+      }
   }
   section {
     padding: 10px 0;

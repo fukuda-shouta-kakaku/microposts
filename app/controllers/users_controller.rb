@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show, :followings, :followers]
 
   def show
     @user = User.find(params[:id])
@@ -35,6 +35,18 @@ class UsersController < ApplicationController
       flash[:danger] = "プロフィールの更新に失敗しました。"
       render 'edit'
     end
+  end
+
+  def followings
+    @users = @user.following_users
+    @option = {type: "followings"}
+    render "followings_followers"
+  end
+
+  def followers
+    @users = @user.follower_users
+    @option = {type: "followers"}
+    render "followings_followers"
   end
 
   private

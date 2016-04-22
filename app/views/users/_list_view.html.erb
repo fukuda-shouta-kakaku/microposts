@@ -1,0 +1,4 @@
+<div id="user-<%= user.id %>" class="col-sm-6 list-view-user-box clearfix">
+  <%= link_to gravatar_for(user, size: 50), user %>
+  <span class="user"><%= link_to user.name, user %></span>
+</div>

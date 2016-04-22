@@ -1,0 +1,12 @@
+<div class="row">
+  <aside class="col-md-4">
+    <%= render partial: "user_info", locals: {user: @user} %>
+  </aside>
+  <div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %>
+    <h3><%= @option[:type] %>(<%= @users.count %>)</h3>
+    <% @users.each do |user| %>
+      <%= render partial: 'list_view', locals: { user: user } %>
+    <% end %>
+  </div>
+<div>

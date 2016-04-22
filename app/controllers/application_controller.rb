@@ -4,8 +4,16 @@ class ApplicationController < ActionController::Base
 
   private
   def logged_in_user
-    @user = User.find_by_id(params[:id]) if params[:id]
-    if !logged_in? || @user && @user != current_user
+    if !logged_in?
+      store_location
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+  end
+
+  def authenticate_user
+    @user = User.find_by_id(params[:id])
+    unless logged_in? && @user == current_user
       store_location
       flash[:danger] = "Please log in."
       redirect_to login_url

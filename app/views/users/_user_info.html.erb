@@ -1,14 +1,16 @@
 <section class="user_info">
-  <h1>
-    <%= gravatar_for user %>
-    <%= user.name %>
-  </h1>
-  <ul>
-  <% if user.nickname %><li> nickname: <%= user.nickname %> </li><% end %>
-  <% if user.place %><li> place: <%= user.place %> </li><% end %>
-  <% if user.description %><li> description: <%= user.description %> </li><% end %>
-  </ul>
-  <div>
+  <div class="clearfix">
+    <h1>
+      <%= gravatar_for user %>
+      <%= user.name %>
+    </h1>
+    <ul>
+    <% if user.nickname %><li> nickname: <%= user.nickname %> </li><% end %>
+    <% if user.place %><li> place: <%= user.place %> </li><% end %>
+    <% if user.description %><li> description: <%= user.description %> </li><% end %>
+    </ul>
+  </div>
+  <div class="follow-link-buttons-box">
     <%= link_to "Followings", followings_user_path(user), class: "btn btn-success" %>
     <%= link_to "Followers", followers_user_path(user), class: "btn btn-info" %>
   </div>

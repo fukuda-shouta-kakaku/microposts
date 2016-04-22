@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:show, :edit, :update]
+  before_action :logged_in_user, only: [:edit, :update]
+  before_action :set_user, only: [:show]
 
   def show
     @user = User.find(params[:id])
@@ -42,4 +43,10 @@ class UsersController < ApplicationController
                                  :nickname, :place, :description,
                                  :password_confirmation)
   end
+
+  def set_user
+    @user = User.find_by_id(params[:id]) \
+      or render text: "404", status: 404
+  end
+
 end

@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   end
 
   def feed_items
-    Micropost.eager_load(:re_micropost).where("microposts.user_id IN (?) OR re_microposts.user_id IN (?)", following_user_ids + [self.id], following_user_ids + [self.id])
+    Micropost.eager_load(:re_micropost) \
+      .where("microposts.user_id IN (?) OR re_microposts.user_id IN (?)", following_user_ids + [self.id], following_user_ids + [self.id]) \
+      .order("coalesce(re_microposts.created_at, microposts.created_at) DESC")
   end
 end

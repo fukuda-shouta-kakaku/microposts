@@ -21,6 +21,24 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def re_micropost
+    micropost = Micropost.find(params[:id])
+    user = current_user
+    unless micropost && user
+      flash[:danger] = "invalid request"
+      return redirect_to root_url 
+    end
+
+    re_micropost = micropost.re_micropost.build({user_id: user.id})
+    if re_micropost.save
+      flash[:success] = "Remicroposted!!"
+      redirect_to request.referrer || root_url
+    else
+      flash[:danger] = "Remicroposting failed..."
+      redirect_to request.referrer || root_url
+    end
+  end
+
   private
   def micropost_params
     params.require(:micropost).permit(:content)

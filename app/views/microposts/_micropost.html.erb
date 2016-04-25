@@ -13,7 +13,7 @@
        method: :post, data: { confirm: "Are you sure to remicropost?" } %>
     <% end %>
     <% if micropost.re_micropost.any? %>
-      retweeted by <%= micropost.re_micropost.count %> user(s).
+      remicroposted by <%= micropost.re_micropost.count %> user(s).
     <% end %>
   </span>
 </li>
